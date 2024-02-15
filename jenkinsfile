@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = 'spescientificcalculator'
+        DOCKER_IMAGE_NAME = 'scientific_calculator'
         GITHUB_REPO_URL = 'https://github.com/subhankhi1002/SPEScientificCalculator.git'
         DOCKERHUB_USERNAME = 'subhankhi'
         DOCKERHUB_PASSWORD = 'Xzsub@2001'
@@ -42,22 +42,22 @@ pipeline {
             steps {
                 script{
                     docker.withRegistry('', 'd0eb05ec-aec6-4979-8359-5af2262e2fe9') {
-                    sh 'docker tag scicalculator subhankhi/spescientificcalculator:latest'
+                    sh 'docker tag scientific_calculator subhankhi/spescientificcalculator:latest'
                     sh 'docker push subhankhi/spescientificcalculator'
                     }
                  }
             }
         }
-        /*stage('Run Ansible Playbook') {
-                    steps {
-                        script {
-                            ansiblePlaybook(
-                                playbook: 'scienticCalculatorDeploy.yml',
-                                inventory: 'inventory'
-                             )
-                        }
-                    }
-                }*/
+//         stage('Run Ansible Playbook') {
+//                     steps {
+//                         script {
+//                             ansiblePlaybook(
+//                                 playbook: 'scienticCalculatorDeploy.yml',
+//                                 inventory: 'inventory'
+//                              )
+//                         }
+//                     }
+//                 }
 
     }
 }
