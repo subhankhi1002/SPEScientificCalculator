@@ -1,0 +1,63 @@
+pipeline {
+    agent any
+    environment {
+        DOCKER_IMAGE_NAME = 'scicalculator'
+        GITHUB_REPO_URL = 'https://github.com/subhankhi1002/SPEScientificCalculator.git'
+        DOCKERHUB_USERNAME = 'subhankhi'
+        DOCKERHUB_PASSWORD = 'Xzsub@2001'
+    }
+
+    stages {
+        stage('Checkout from Github') {
+            steps {
+                script {
+                    git branch: 'main', url: "${GITHUB_REPO_URL}"
+                }
+            }
+        }
+
+        stage('Maven Build') {
+                    steps {
+                        sh 'mvn clean install'
+                    }
+                }
+
+        stage('Building the Docker Image') {
+            steps {
+                script {
+                    docker.build("${DOCKER_IMAGE_NAME}", '.')
+                }
+            }
+        }
+
+        stage('Login to Dockerhub') {
+                    steps {
+                        withCredentials([usernamePassword(credentialsId: 'd0eb05ec-aec6-4979-8359-5af2262e2fe9', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
+                            sh "docker login -u ${env.DOCKERHUB_USERNAME} -p ${env.DOCKERHUB_PASSWORD}"
+                        }
+                    }
+                }
+
+        stage('Pushing the Docker Image') {
+            steps {
+                script{
+                    docker.withRegistry('', 'd0eb05ec-aec6-4979-8359-5af2262e2fe9') {
+                    sh 'docker tag scicalculator subhankhi/spescientificcalculator:latest'
+                    sh 'docker push subhankhi/spescientificcalculator'
+                    }
+                 }
+            }
+        }
+        /*stage('Run Ansible Playbook') {
+                    steps {
+                        script {
+                            ansiblePlaybook(
+                                playbook: 'scienticCalculatorDeploy.yml',
+                                inventory: 'inventory'
+                             )
+                        }
+                    }
+                }*/
+
+    }
+}
