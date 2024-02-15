@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = 'scicalculator'
+        DOCKER_IMAGE_NAME = 'spescientificcalculator'
         GITHUB_REPO_URL = 'https://github.com/subhankhi1002/SPEScientificCalculator.git'
         DOCKERHUB_USERNAME = 'subhankhi'
         DOCKERHUB_PASSWORD = 'Xzsub@2001'
