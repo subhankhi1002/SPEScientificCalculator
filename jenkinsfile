@@ -44,6 +44,7 @@ pipeline {
                     docker.withRegistry('', 'd0eb05ec-aec6-4979-8359-5af2262e2fe9') {
                     sh 'docker tag scicalculator subhankhi/spescientificcalculator:latest'
                     sh 'docker push subhankhi/spescientificcalculator'
+                    }
                  }
             }
         }
