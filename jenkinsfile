@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE_NAME = 'scientific_calculator'
+        DOCKER_IMAGE_NAME= 'scientific_calculator'
         GITHUB_REPO_URL = 'https://github.com/subhankhi1002/SPEScientificCalculator.git'
         DOCKERHUB_USERNAME = 'subhankhi'
         DOCKERHUB_PASSWORD = 'Xzsub@2001'
@@ -48,16 +48,16 @@ pipeline {
                  }
             }
         }
-//         stage('Run Ansible Playbook') {
-//                     steps {
-//                         script {
-//                             ansiblePlaybook(
-//                                 playbook: 'scienticCalculatorDeploy.yml',
-//                                 inventory: 'inventory'
-//                              )
-//                         }
-//                     }
-//                 }
+        stage('Run Ansible Playbook') {
+                    steps {
+                        script {
+                            ansiblePlaybook(
+                                playbook: 'speScientificCalculator.yml',
+                                inventory: 'inventory'
+                             )
+                        }
+                    }
+                }
 
     }
 }
