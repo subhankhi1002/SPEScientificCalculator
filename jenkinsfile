@@ -5,6 +5,8 @@ pipeline {
         GITHUB_REPO_URL = 'https://github.com/subhankhi1002/SPEScientificCalculator.git'
         DOCKERHUB_USERNAME = 'subhankhi'
         DOCKERHUB_PASSWORD = 'Xzsub@2001'
+        LANG = 'en_US.UTF-8'
+        LC_ALL = 'en_US.UTF-8'
     }
 
     stages {
