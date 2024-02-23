@@ -65,6 +65,6 @@ pipeline {
 post{
         always{
             mail bcc: '', body: 'Build Status Changed', cc: '', from: '', replyTo: '', subject: 'Build Jenkins Calculator', to: 'subhankhimaiti@gmail.com'
-        }
-    }
+}
+}
 }
