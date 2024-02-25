@@ -18,7 +18,7 @@ pipeline {
             }
         }
 
-        stage('Maven Build') {
+        stage('Building the Maven') {
                     steps {
                         sh 'mvn clean install'
                     }
@@ -50,7 +50,7 @@ pipeline {
                  }
             }
         }
-        stage('Run Ansible Playbook') {
+        stage('Running the Ansible Playbook') {
                     steps {
                         script {
                             ansiblePlaybook(
